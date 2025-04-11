@@ -40,6 +40,15 @@ app.post("/product/crear",   async(req, res) => {
     return res.json(newProduct)
 })
 
+app.get("/product", async (req, res) => {
+    try {
+        const products = await Product.find(); // Busca en "products"
+        res.json(products);
+    } catch (error) {
+        res.status(500).json({ error: "Error al obtener productos" });
+    }
+});
+
 // Comprar  un producto
 app.post("/product/compra",  async(req, res) => {
     const {ids} = req.body;
